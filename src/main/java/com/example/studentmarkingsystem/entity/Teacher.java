@@ -22,18 +22,22 @@ public class Teacher {
     }
 
     public void setId(Long id) {
+
         this.id = id;
     }
 
     public String getTeacherUsername() {
+
         return teacherUsername;
     }
 
     public void setTeacherUsername(String teacherUsername) {
+
         this.teacherUsername = teacherUsername;
     }
 
     public String getTeacherPassword() {
+
         return teacherPassword;
     }
 
@@ -50,6 +54,7 @@ public class Teacher {
     }
 
     public Integer getTeacherCourseId() {
+
         return teacherCourseId;
     }
 

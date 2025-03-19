@@ -6,20 +6,12 @@ public class ParentDTO {
     private String parentPassword;
     private Integer studentId;
 
-    public Long getId() {
-        return id;
+    public Integer getStudentId() {
+        return studentId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getParentUsername() {
-        return parentUsername;
-    }
-
-    public void setParentUsername(String parentUsername) {
-        this.parentUsername = parentUsername;
+    public void setStudentId(Integer studentId) {
+        this.studentId = studentId;
     }
 
     public String getParentPassword() {
@@ -30,11 +22,19 @@ public class ParentDTO {
         this.parentPassword = parentPassword;
     }
 
-    public Integer getStudentId() {
-        return studentId;
+    public String getParentUsername() {
+        return parentUsername;
     }
 
-    public void setStudentId(Integer studentId) {
-        this.studentId = studentId;
+    public void setParentUsername(String parentUsername) {
+        this.parentUsername = parentUsername;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

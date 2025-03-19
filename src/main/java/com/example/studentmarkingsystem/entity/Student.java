@@ -15,6 +15,8 @@ public class Student {
     @Column(name = "student_password")
     private String studentPassword;
 
+
+
     public Long getId() {
         return id;
     }
