@@ -48,4 +48,14 @@ public class Student {
     public void setStudentPassword(String studentPassword) {
         this.studentPassword = studentPassword;
     }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", studentId=" + studentId +
+                ", studentUsername='" + studentUsername + '\'' +
+                ", studentPassword='" + studentPassword + '\'' +
+                '}';
+    }
 }

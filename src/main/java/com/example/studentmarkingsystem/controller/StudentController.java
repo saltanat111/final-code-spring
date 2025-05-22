@@ -4,8 +4,11 @@ import com.example.studentmarkingsystem.dto.StudentDTO;
 import com.example.studentmarkingsystem.entity.Student;
 import com.example.studentmarkingsystem.mapper.StudentMapper;
 import com.example.studentmarkingsystem.service.StudentService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,17 +16,24 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/students")
+@PreAuthorize("hasRole('STUDENT')")
 public class StudentController {
     @Autowired
     private StudentService studentService;
     @Autowired
     private StudentMapper studentMapper;
 
-    @GetMapping
+       @GetMapping
     public List<StudentDTO> getAllStudents() {
         return studentService.getAllStudents().stream()
                 .map(studentMapper::toDto)
                 .collect(Collectors.toList());
+    }
+
+    @GetMapping("/csrf-token")
+    public CsrfToken getCsrfToken(HttpServletRequest request) {
+        return (CsrfToken) request.getAttribute("_csrf");
+
     }
 
     @GetMapping("/{id}")

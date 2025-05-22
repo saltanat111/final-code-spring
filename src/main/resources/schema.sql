@@ -1,5 +1,11 @@
 CREATE SCHEMA IF NOT EXISTS markJoulnal;
 
+DROP TABLE IF EXISTS users;
+create table users(id BIGINT PRIMARY KEY, username VARCHAR(80), password VARCHAR(80));
+insert into users values (1, 'navin', '$2a$12$I7ttY7QjMAklyKLW8yZbN.X4KLKpdOZ1qOrFBt7BDWNtnC4g0.OTK');
+insert into users values (2, 'sushil', 's@123');
+insert into users values (3, 'saltanat', 's@1234');
+
 DROP TABLE IF EXISTS admins;
 CREATE TABLE admins (id BIGINT PRIMARY KEY AUTO_INCREMENT, admin_username VARCHAR(80), admin_password VARCHAR(80));
 
@@ -16,7 +22,7 @@ DROP TABLE IF EXISTS marks;
 CREATE TABLE marks (id BIGINT PRIMARY KEY AUTO_INCREMENT, student_id INTEGER, teacher_course VARCHAR(80), mark INT);
 
 
-INSERT INTO admins (admin_username, admin_password) VALUES ('admin', 'admin123');
+INSERT INTO admins (admin_username, admin_password) VALUES ('admin', '$2a$12$pVIaNFYjKh/TrMv0GB5keOYTbUFU/HJWkmJuebFbFF6XceFr0Ury.');
 
 INSERT INTO teachers (teacher_username, teacher_password, teacher_course, teacher_course_id) VALUES ('Nadejda Kirillovna', 'teacher123N', 'history', 1);
 INSERT INTO teachers (teacher_username, teacher_password, teacher_course, teacher_course_id) VALUES ('Jazgul Annazarova', 'teacher123J', 'biology', 2);
