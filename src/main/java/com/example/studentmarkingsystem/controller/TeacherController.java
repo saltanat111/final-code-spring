@@ -6,6 +6,7 @@ import com.example.studentmarkingsystem.mapper.TeacherMapper;
 import com.example.studentmarkingsystem.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/teachers")
+@PreAuthorize("hasAnyRole('ADMIN')")
 public class TeacherController {
     @Autowired
     private TeacherService teacherService;
@@ -27,6 +29,7 @@ public class TeacherController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyRole('TEACHER')")
     public ResponseEntity<TeacherDTO> getTeacherById(@PathVariable Long id) {
         Teacher teacher = teacherService.getTeacherById(id);
         return ResponseEntity.ok(teacherMapper.toDto(teacher));

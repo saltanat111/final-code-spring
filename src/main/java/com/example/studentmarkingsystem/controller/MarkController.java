@@ -6,13 +6,17 @@ import com.example.studentmarkingsystem.mapper.MarkMapper;
 import com.example.studentmarkingsystem.service.MarkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static org.springframework.security.authorization.AuthorityReactiveAuthorizationManager.hasAnyRole;
+
 @RestController
 @RequestMapping("/api/marks")
+@PreAuthorize("hasAnyRole('ADMIN', 'TEACHER')")
 public class MarkController {
     @Autowired
     private MarkService markService;

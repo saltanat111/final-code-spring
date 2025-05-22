@@ -1,6 +1,7 @@
 package com.example.studentmarkingsystem.config;
 
 import com.example.studentmarkingsystem.service.JWTService;
+import com.example.studentmarkingsystem.service.detailService.GeneralUserDetailService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -8,6 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -30,10 +32,11 @@ public class JwtFilter extends OncePerRequestFilter {
     @Autowired
     ApplicationContext context;
 
-    private final UserDetailsService userDetailsService;
+    private final GeneralUserDetailService generalUserDetailService; // Inject the GeneralUserDetailService
 
-    public JwtFilter(UserDetailsService userDetailsService) {
-        this.userDetailsService = userDetailsService;
+    @Autowired
+    public JwtFilter(@Qualifier("generalUserDetailsService") GeneralUserDetailService generalUserDetailService) { // Use @Qualifier
+        this.generalUserDetailService = generalUserDetailService;
     }
 
     @Override
@@ -57,7 +60,7 @@ public class JwtFilter extends OncePerRequestFilter {
         }
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
+            UserDetails userDetails = this.generalUserDetailService.loadUserByUsername(username);
            if(jwtService.isTokenValid(token, userDetails)){
                UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                authToken.setDetails(new WebAuthenticationDetailsSource()

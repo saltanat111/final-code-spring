@@ -23,14 +23,15 @@ CREATE TABLE marks (id BIGINT PRIMARY KEY AUTO_INCREMENT, student_id INTEGER, te
 
 
 INSERT INTO admins (admin_username, admin_password) VALUES ('admin', '$2a$12$pVIaNFYjKh/TrMv0GB5keOYTbUFU/HJWkmJuebFbFF6XceFr0Ury.');
+INSERT INTO admins (admin_username, admin_password) VALUES ('admin2', '$2a$12$pVIaNFYjKh/TrMv0GB5keOYTbUFU/HJWkmJuebFbFF6XceFr0Ury.');
 
-INSERT INTO teachers (teacher_username, teacher_password, teacher_course, teacher_course_id) VALUES ('Nadejda Kirillovna', 'teacher123N', 'history', 1);
+INSERT INTO teachers (teacher_username, teacher_password, teacher_course, teacher_course_id) VALUES ('Nadejda Kirillovna', '$2a$12$deu/XSOpQGpJEl3B4aya4eWXB8JijV.5GB3zq573Pupj.TgaySD5.', 'history', 1);
 INSERT INTO teachers (teacher_username, teacher_password, teacher_course, teacher_course_id) VALUES ('Jazgul Annazarova', 'teacher123J', 'biology', 2);
 INSERT INTO teachers (teacher_username, teacher_password, teacher_course, teacher_course_id) VALUES ('Elchibek Kerimbaev', 'teacher123E', 'physics', 3);
 INSERT INTO teachers (teacher_username, teacher_password, teacher_course, teacher_course_id) VALUES ('Diana Nusratullaeva', 'teacher123D', 'math', 4);
 INSERT INTO teachers (teacher_username, teacher_password, teacher_course, teacher_course_id) VALUES ('Aygerim Melisovna', 'teacher123A', 'geography', 5);
 
-INSERT INTO parents (parent_username, parent_password, student_id) VALUES ('Andrey Bolkonskiy', 'parent123A', 1);
+INSERT INTO parents (parent_username, parent_password, student_id) VALUES ('Andrey Bolkonskiy', '$2a$12$9f0qG30Sk/INu4rWe6uiTO9/qxr/88JN6awYTFBoiRbRJiPaYwWoC', 1);
 INSERT INTO parents (parent_username, parent_password, student_id) VALUES ('Pyer Bezuhov', 'parent123P', 2);
 INSERT INTO parents (parent_username, parent_password, student_id) VALUES ('Natasha Rostova', 'parent123N', 3);
 INSERT INTO parents (parent_username, parent_password, student_id) VALUES ('Chadskiy Alecksandr', 'parent123C', 4);
@@ -38,7 +39,7 @@ INSERT INTO parents (parent_username, parent_password, student_id) VALUES ('Grig
 INSERT INTO parents (parent_username, parent_password, student_id) VALUES ('Tatyana Larina', 'parent123T', 6);
 INSERT INTO parents (parent_username, parent_password, student_id) VALUES ('Elizabet Bennet', 'parent123E', 7);
 
-INSERT INTO students (student_id, student_username, student_password) VALUES (1, 'Arina Petrovna', 'student123A');
+INSERT INTO students (student_id, student_username, student_password) VALUES (1, 'Arina Petrovna', '$2a$12$p8EVAkLZiKq4z.G9pVTKQeLan8zB5T8GP.CJH0oHg86HM8EOXnONG');
 INSERT INTO students (student_id, student_username, student_password) VALUES (2, 'Irina Lisitsina', 'student123I');
 INSERT INTO students (student_id, student_username, student_password) VALUES (3, 'Nastya Alekseevna', 'student123N');
 INSERT INTO students (student_id, student_username, student_password) VALUES (4, 'Elen Kuragina', 'student123E');

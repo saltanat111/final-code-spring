@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/students")
-@PreAuthorize("hasRole('STUDENT')")
+@PreAuthorize("hasRole('ADMIN')")
 public class StudentController {
     @Autowired
     private StudentService studentService;
@@ -37,6 +37,7 @@ public class StudentController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyRole('STUDENT')")
     public ResponseEntity<StudentDTO> getStudentById(@PathVariable Long id) {
         Student student = studentService.getStudentById(id);
         return ResponseEntity.ok(studentMapper.toDto(student));
@@ -61,4 +62,5 @@ public class StudentController {
         studentService.deleteStudent(id);
         return ResponseEntity.noContent().build();
     }
+
 }

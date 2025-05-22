@@ -4,6 +4,8 @@ import com.example.studentmarkingsystem.entity.Admin;
 import com.example.studentmarkingsystem.entity.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Optional;
+
 public interface AdminRepository extends JpaRepository<Admin, Long> {
-    //Admin findByUsername(String adminUsername);
+    Optional<Admin> findByAdminUsername(String adminUsername);
 }
