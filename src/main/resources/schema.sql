@@ -7,7 +7,7 @@ insert into users values (2, 'sushil', 's@123');
 insert into users values (3, 'saltanat', 's@1234');
 
 DROP TABLE IF EXISTS admins;
-CREATE TABLE admins (id BIGINT PRIMARY KEY AUTO_INCREMENT, admin_username VARCHAR(80), admin_password VARCHAR(80));
+CREATE TABLE ADMINS (id BIGINT PRIMARY KEY AUTO_INCREMENT, admin_username VARCHAR(80), admin_password VARCHAR(80));
 
 DROP TABLE IF EXISTS teachers;
 CREATE TABLE teachers (id BIGINT PRIMARY KEY AUTO_INCREMENT, teacher_username VARCHAR(80), teacher_password VARCHAR(80), teacher_course VARCHAR(80), teacher_course_id INTEGER);

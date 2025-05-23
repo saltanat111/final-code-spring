@@ -16,7 +16,6 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/students")
-@PreAuthorize("hasRole('ADMIN')")
 public class StudentController {
     @Autowired
     private StudentService studentService;
@@ -24,26 +23,29 @@ public class StudentController {
     private StudentMapper studentMapper;
 
        @GetMapping
-    public List<StudentDTO> getAllStudents() {
+       @PreAuthorize("hasRole('ADMIN')")
+       public List<StudentDTO> getAllStudents() {
         return studentService.getAllStudents().stream()
                 .map(studentMapper::toDto)
                 .collect(Collectors.toList());
     }
 
     @GetMapping("/csrf-token")
+    @PreAuthorize("hasRole('ADMIN')")
     public CsrfToken getCsrfToken(HttpServletRequest request) {
         return (CsrfToken) request.getAttribute("_csrf");
 
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('STUDENT')")
+    @PreAuthorize("hasRole('STUDENT')")
     public ResponseEntity<StudentDTO> getStudentById(@PathVariable Long id) {
         Student student = studentService.getStudentById(id);
         return ResponseEntity.ok(studentMapper.toDto(student));
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<StudentDTO> createStudent(@RequestBody StudentDTO studentDTO) {
         Student student = studentMapper.toEntity(studentDTO);
         Student savedStudent = studentService.createStudent(student);
@@ -51,6 +53,7 @@ public class StudentController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<StudentDTO> updateStudent(@PathVariable Long id, @RequestBody StudentDTO studentDTO) {
         Student student = studentMapper.toEntity(studentDTO);
         Student updatedStudent = studentService.updateStudent(id, student);
@@ -58,6 +61,7 @@ public class StudentController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> deleteStudent(@PathVariable Long id) {
         studentService.deleteStudent(id);
         return ResponseEntity.noContent().build();
